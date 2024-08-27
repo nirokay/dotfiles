@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 shopt -s dotglob
+FAILED_LIST=()
 
 function link_files_of_dir() {
     SEARCH_DIRECTORY=$1 # ./home/*
@@ -29,13 +30,14 @@ function link_files_of_dir() {
             continue
         }
         [ -f "$DOTFILE" ] && {
-            echo -e "File '$DOTFILE' already exists ($(file "$DOTFILE"))"
+            #echo -e "File '$DOTFILE' already exists ($(file "$DOTFILE"))"
             if test -L "$DOTFILE"; then
-                echo -e "Removing symlink '$DOTFILE'"
+                #echo -e "Removing symlink '$DOTFILE'"
                 if ! mv "$DOTFILE" "$HOME/.local/share/Trash/files/$(basename "$DOTFILE")_deleted_by_dotfiles"; then
                     rm "$DOTFILE"
                 fi
             else
+                FAILED_LIST+=( "$FILE" )
                 continue
             fi
         }
@@ -50,3 +52,5 @@ PWD=$(pwd)
 
 link_files_of_dir "$PWD/home"   "$HOME"
 link_files_of_dir "$PWD/config" "$HOME/.config"
+
+[ -n "${FAILED_LIST[*]}" ] && echo -e "\nFailed to link these files:\n${FAILED_LIST[*]}"
