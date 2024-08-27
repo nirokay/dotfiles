@@ -6,6 +6,7 @@ function link_files_of_dir() {
     SEARCH_DIRECTORY=$1 # ./home/*
     TARGET_DIRECTORY=$2
     INDENT=$3
+    [ -z "$INDENT" ] && INDENT="-"
     echo -e "Linking files in '$SEARCH_DIRECTORY' to '$TARGET_DIRECTORY'!"
     [ ! -d "$SEARCH_DIRECTORY" ] && {
         echo -e "Creating directory '$SEARCH_DIRECTORY'"
@@ -29,14 +30,23 @@ function link_files_of_dir() {
         }
         [ -f "$DOTFILE" ] && {
             echo -e "File '$DOTFILE' already exists ($(file "$DOTFILE"))"
-            continue
+            if test -L "$DOTFILE"; then
+                echo -e "Removing symlink '$DOTFILE'"
+                if ! mv "$DOTFILE" "$HOME/.local/share/Trash/files/$(basename "$DOTFILE")_deleted_by_dotfiles"; then
+                    rm "$DOTFILE"
+                fi
+            else
+                continue
+            fi
         }
 
         # Linking fun:
-        echo -e "$INDENT Creating symlink: $DOTFILE > ./$FILE"
-        ln -S "$DOTFILE" "./$FILE"
+        echo -e "$INDENT Creating symlink: '$DOTFILE' -> '$FILE'"
+        ln -s "$FILE" "$DOTFILE"
     done
 }
 
-link_files_of_dir "home"   "$HOME" "-"
-link_files_of_dir "config" "$HOME/.config"
+PWD=$(pwd)
+
+link_files_of_dir "$PWD/home"   "$HOME"
+link_files_of_dir "$PWD/config" "$HOME/.config"
