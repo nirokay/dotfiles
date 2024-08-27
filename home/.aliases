@@ -1,5 +1,28 @@
-alias cd="z"
-alias cdi="zi"
-alias neofetch="fastfetch"
-alias cat="bat"
+# shellcheck disable=SC2148
+
+function exists() {
+    PROGRAM=$1
+    PARAMS=$2
+    [ -z "$PROGRAM" ] && {
+        echo -e "Calling exists() with empty PROGRAM arg"
+        return 2
+    }
+    [ -z "$PARAMS" ] && PARAMS=-v
+
+    if $PROGRAM "$PARAMS" &> /dev/null; then
+        return 0
+    fi
+    return 1
+}
+
+# Allow sudo for aliases:
 alias "sudo "="sudo"
+# Cat:
+exists "bat" "-V" && alias cat="bat"
+# Neofetch:
+exists "fastfetch" && alias neofetch="fastfetch"
+# Zoxide:
+exists "zoxide" "-V" && {
+    alias cd="z"
+    alias cdi="zi"
+}

@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148
 # Sample .profile for SUSE Linux
 # rewritten by Christian Steinruecken <cstein@suse.de>
 #
