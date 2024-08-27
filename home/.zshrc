@@ -120,25 +120,24 @@ source $ZSH/oh-my-zsh.sh
 # Normal ZSH config:
 # -----------------------------------------------------------------------------
 
-# Lines configured by zsh-newuser-install
+# Lines configured by zsh-newuser-install -------------------------------------
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=1000
 setopt autocd nomatch
 unsetopt beep
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
+# The following lines were added by compinstall -------------------------------
 zstyle :compinstall filename '/home/niro/.zshrc'
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# Custom profile:
+# Custom profile --------------------------------------------------------------
 source ~/.profile
 
-# Zoxide:
+# Programs init ---------------------------------------------------------------
 eval "$(zoxide init zsh)"
-
-# Starship:
 eval "$(starship init zsh)"

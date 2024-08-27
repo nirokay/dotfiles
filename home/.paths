@@ -1,0 +1,10 @@
+# shellcheck disable=SC2148
+
+PATH_DIRECTORIES=(
+    ~/.nimble/bin/
+    ~/Git/shell-utils/scripts
+)
+
+for NEW in "${PATH_DIRECTORIES[@]}"; do
+    PATH="$PATH:$NEW"
+done

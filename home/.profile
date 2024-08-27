@@ -16,7 +16,8 @@ export BROWSER=firefox
 export GITMAN_REPOS_LOCATION=~/Git/
 
 # Path:
-export PATH="$PATH:"~/.nimble/bin/:~/Git/shell-utils/scripts
+# shellcheck source=/dev/null
+source ~/.paths
 
 # Aliases:
 # shellcheck source=/dev/null
