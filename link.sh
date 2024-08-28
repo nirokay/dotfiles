@@ -13,10 +13,12 @@ function link_files_of_dir() {
         echo -e "Creating directory '$SEARCH_DIRECTORY'"
         mkdir "$SEARCH_DIRECTORY" || echo -e "Failed to create directory '$SEARCH_DIRECTORY'"
     }
-    for FILE in "$SEARCH_DIRECTORY"/**; do
+    for FILE in "$SEARCH_DIRECTORY"/*; do
         # Recursion:
-        [ -d "$FILE" ] && link_files_of_dir "$FILE" "$TARGET_DIRECTORY/$(basename "$FILE")" "$INDENT-"
-
+        [ -d "$FILE" ] && {
+            echo -e "link_files_of_dir $FILE $TARGET_DIRECTORY/$(basename "$FILE") $INDENT-"
+            link_files_of_dir "$FILE" "$TARGET_DIRECTORY/$(basename "$FILE")" "$INDENT-"
+        }
         # Avoid empty directories:
         [[ "$FILE" == *"*" ]] && {
             echo -e "Empty directory $FILE"
@@ -30,7 +32,7 @@ function link_files_of_dir() {
             continue
         }
         [ -f "$DOTFILE" ] && {
-            #echo -e "File '$DOTFILE' already exists ($(file "$DOTFILE"))"
+            echo -e "File '$DOTFILE' already exists ($(file "$DOTFILE"))"
             if test -L "$DOTFILE"; then
                 #echo -e "Removing symlink '$DOTFILE'"
                 if ! mv "$DOTFILE" "$HOME/.local/share/Trash/files/$(basename "$DOTFILE")_deleted_by_dotfiles"; then
@@ -44,13 +46,16 @@ function link_files_of_dir() {
 
         # Linking fun:
         echo -e "$INDENT Creating symlink: '$DOTFILE' -> '$FILE'"
-        ln -s "$FILE" "$DOTFILE"
+        # ln -s "$FILE" "$DOTFILE"
     done
 }
 
 PWD=$(pwd)
 
 link_files_of_dir "$PWD/home"   "$HOME"
-link_files_of_dir "$PWD/config" "$HOME/.config"
+# link_files_of_dir "$PWD/config" "$HOME/.config"
 
-[ -n "${FAILED_LIST[*]}" ] && echo -e "\nFailed to link these files:\n${FAILED_LIST[*]}"
+[ -z "${FAILED_LIST[*]}" ] || {
+    echo -e "\nFailed to link these files:\n${FAILED_LIST[*]}"
+    exit 1
+}
