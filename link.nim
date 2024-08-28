@@ -28,14 +28,14 @@ styledEcho fgDefault, &"Root directory is set to ", fgYellow, pathRoot, fgDefaul
 
 stdout.write "Please verify if those are correct [y/N] "
 case getch():
-    of 'Y', 'y':
-        echo "\nContinuing..."
-    of 'N', 'n':
-        echo "\nAborting..."
-        quit 1
-    else:
-        echo "\nUnclear input, aborting..."
-        quit 1
+of 'Y', 'y':
+    echo "\nContinuing..."
+of 'N', 'n':
+    echo "\nAborting..."
+    quit 1
+else:
+    echo "\nUnclear input, aborting..."
+    quit 1
 
 
 # Start linking process: ------------------------------------------------------
@@ -86,6 +86,18 @@ proc linkFilesInDirectory*(src: string, dest: string, sudoPrivileges: bool = fal
             continue
         # File:
         let symlink: Symlink = newSymlink(absolutePath(src / path), dest / path)
+        # Remove file, if consented:
+        if symlink.dest.fileExists: # and not symlink.dest.symlinkExists():
+            stdout.styledWrite fgRed, &"{indentation}? File '{symlink.dest}' exists, replace file with symlink? [y/N] ", fgDefault
+            case getch():
+            of 'Y', 'y':
+                try:
+                    symlink.dest.removeFile()
+                except OSError as e:
+                    let msg: string = e.msg.replace("\n", " - ")
+                    styledEcho fgRed, &"{indentation}! [Error] Could not remove file '{symlink.dest}' ({msg})", fgDefault
+            else:
+                break
         stdout.styledWrite fgDefault, &"{indentation}> Creating symlink: {symlink}", fgDefault
         try:
             # Remove old symlink, if exists:
