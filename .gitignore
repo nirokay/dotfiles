@@ -1,2 +1,5 @@
 # Binaries:
-./link
+link
+
+# Log files:
+*.log
