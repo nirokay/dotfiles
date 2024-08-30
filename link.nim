@@ -87,7 +87,7 @@ proc linkFilesInDirectory*(src: string, dest: string, sudoPrivileges: bool = fal
         # File:
         let symlink: Symlink = newSymlink(absolutePath(src / path), dest / path)
         # Remove file, if consented:
-        if symlink.dest.fileExists: # and not symlink.dest.symlinkExists():
+        if symlink.dest.fileExists and not symlink.dest.symlinkExists():
             stdout.styledWrite fgRed, &"{indentation}? File '{symlink.dest}' exists, replace file with symlink? [y/N] ", fgDefault
             case getch():
             of 'Y', 'y':
