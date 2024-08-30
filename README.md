@@ -7,3 +7,9 @@ links them to their locations.
 
 * `./home` -> `$1` of the script `link.sh` (required argument, use your `$HOME` before running with sudo)
 * `./root` -> `$2` of the script `link.sh` (optional argument, default: `/`)
+
+## Dependencies
+
+* Nim
+  * gcc (or another C compiler)
+* Bash
