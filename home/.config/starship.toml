@@ -80,7 +80,6 @@ success_symbol = ''
 [git_status]
 disabled = false
 format = '([\[$all_status$ahead_behind\]]($style) )'
-up_to_date = ' ▶️ '
 conflicted = ' ‼️ '
 ahead =      ' 🚀 '
 behind =     ' ⏪ '
@@ -96,14 +95,13 @@ disabled = false
 format = '[$symbol$name]($style)'
 
 [os.symbols]
-AIX = '➿ '
 Alpaquita = '🔔 '
 AlmaLinux = '💠 '
 Alpine = '🏔️ '
 Amazon = '🙂 '
 Android = '🤖 '
-Arch = '🎗️ '
-Artix = '🎗️ '
+Arch = '🔺 '
+Artix = '🔺 '
 CentOS = '💠 '
 Debian = '🌀 '
 DragonFly = '🐉 '
