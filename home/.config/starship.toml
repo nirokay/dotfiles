@@ -7,7 +7,7 @@ add_newline = true
 
 format = '''
 [┌── ](col-lines)$username[@](col-lines)$hostname $os $fill$cmd_duration$fill$localip[ -](col-lines)
-[│](col-lines) $directory$nim$lua$rust$haxe$nodejs$python$ruby$package$git_status
+[│](col-lines) $directory$nim$lua$rust$haxe$nodejs$python$ruby$package$git_branch$git_status
 [└─$status─$sudo\$](col-lines) '''
 
 palette = 'nirokay'
