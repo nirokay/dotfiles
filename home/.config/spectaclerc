@@ -1,0 +1,15 @@
+[Annotations]
+annotationToolType=2
+freehandStrokeColor=255,170,255
+
+[General]
+autoSaveImage=true
+clipboardGroup=PostScreenshotCopyImage
+
+[ImageSave]
+imageFilenameTemplate=<yyyy>-<MM>/<yyyy>-<MM>-<dd>_<HH>-<mm>-<ss>
+translatedScreenshotsFolder=Screenshots
+
+[VideoSave]
+preferredVideoFormat=0
+translatedScreencastsFolder=Screencasts
