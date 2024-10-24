@@ -66,7 +66,7 @@ ZSH_THEME="robbyrussell"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -139,5 +139,8 @@ compinit
 source ~/.profile
 
 # Programs init ---------------------------------------------------------------
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+zoxide -V &> /dev/null && eval "$(zoxide init zsh)"
+starship -V &> /dev/null && eval "$(starship init zsh)"
+
+# Don't make my prompt look like it errored pls kthxbye :3 --------------------
+true
