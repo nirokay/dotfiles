@@ -20,7 +20,10 @@ alias "sudo "="sudo"
 # Cat:
 exists "bat" "-V" && alias cat="bat"
 # Neofetch:
-exists "fastfetch" && alias neofetch="fastfetch"
+if exists "hyfetch" "--version"; then alias neofetch="hyfetch"
+elif exists "fastfetch"; then alias neofetch="fastfetch"
+elif exists "neowofetch" "--version"; then alias neofetch="neowofetch"
+fi
 # Zoxide:
 exists "zoxide" "-V" && {
     alias cd="z"
