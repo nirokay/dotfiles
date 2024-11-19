@@ -1,5 +1,23 @@
 # shellcheck disable=SC2148
 
+ALIASES_FOR_CLEAR=(
+    cöear
+    clea
+    "clear#"
+    cllear
+    claer
+    claear
+    cler
+    cleear
+    cleer
+    claar
+)
+
+for MISSPELL in "${ALIASES_FOR_CLEAR[@]}"; do
+    # shellcheck disable=SC2139 # intended behaviour here
+    alias "$MISSPELL"="clear; echo -e \"Wdym '${MISSPELL}'?? I Think you meant 'clear', right?\""
+done
+
 function exists() {
     PROGRAM=$1
     PARAMS=$2
