@@ -16,6 +16,9 @@ export BROWSER=firefox
 export GITMAN_REPOS_LOCATION=~/Git/
 export NIM_DOCS_DIRECTORY=~/Git/nirokay.github.io/nim-docs/
 
+# Stfu perl:
+export PERL_BADLANG=0
+
 # Path:
 # shellcheck source=/dev/null
 source ~/.paths
