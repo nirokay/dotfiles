@@ -1,10 +1,15 @@
 [Annotations]
 annotationToolType=2
 freehandStrokeColor=255,170,255
+textFont=Monospace,36,-1,0,400,0,0,0,0,0,0,0,0,0,0,1
+textFontColor=255,170,255
 
 [General]
 autoSaveImage=true
 clipboardGroup=PostScreenshotCopyImage
+
+[GuiConfig]
+includePointer=true
 
 [ImageSave]
 imageFilenameTemplate=<yyyy>-<MM>/<yyyy>-<MM>-<dd>_<HH>-<mm>-<ss>
