@@ -11,7 +11,9 @@
 
 # Variables:
 export EDITOR=micro
+export VISUAL=$EDITOR
 export BROWSER=firefox
+export PAGER=less
 
 export GITMAN_REPOS_LOCATION=~/Git/
 export NIM_DOCS_DIRECTORY=~/Git/nirokay.github.io/nim-docs/
