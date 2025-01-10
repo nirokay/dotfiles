@@ -1,8 +1,7 @@
 # ZSH config file - nirokay
 
-# -----------------------------------------------------------------------------
-# Ohh-My-ZSH config:
-# -----------------------------------------------------------------------------
+
+# Ohh-My-ZSH config: ==========================================================
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -86,61 +85,46 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Normal ZSH config: ==========================================================
 
 
-# -----------------------------------------------------------------------------
-# Normal ZSH config:
-# -----------------------------------------------------------------------------
+# ────────────────────────────────────────────────────────────────────────────╮
+# Shell options                                                             * │
+# ────────────────────────────────────────────────────────────────────────────┤
+    setopt autocd nomatch                                                   # │
+    unsetopt beep                                                           # │
+# ────────────────────────────────────────────────────────────────────────────╯
 
-# Lines configured by zsh-newuser-install -------------------------------------
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=1000
-setopt autocd nomatch
-unsetopt beep
-# End of lines configured by zsh-newuser-install
+# ────────────────────────────────────────────────────────────────────────────╮
+# History file                                                              * │
+# ────────────────────────────────────────────────────────────────────────────┤
+    HISTFILE=~/.zsh_history                                                 # │
+    HISTSIZE=10000                                                          # │
+    SAVEHIST=1000                                                           # │
+# ────────────────────────────────────────────────────────────────────────────╯
 
-# The following lines were added by compinstall -------------------------------
-zstyle :compinstall filename '/home/niro/.zshrc'
+# ────────────────────────────────────────────────────────────────────────────╮
+# compinstall                                                               * │
+# ────────────────────────────────────────────────────────────────────────────┤
+    zstyle :compinstall filename '/home/niro/.zshrc'                        # │
+    autoload -Uz compinit                                                   # │
+    compinit                                                                # │
+# ────────────────────────────────────────────────────────────────────────────╯
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# ────────────────────────────────────────────────────────────────────────────╮
+# Custom profile                                                            * │
+# ────────────────────────────────────────────────────────────────────────────┤
+    source ~/.profile                                                       # │
+# ────────────────────────────────────────────────────────────────────────────╯
 
-# Custom profile --------------------------------------------------------------
-source ~/.profile
+# ────────────────────────────────────────────────────────────────────────────╮
+# Programs init                                                             * │
+# ────────────────────────────────────────────────────────────────────────────┤
+    zoxide -V &> /dev/null && eval "$(zoxide init zsh)"                     # │
+    starship -V &> /dev/null && eval "$(starship init zsh)"                 # │
+# ────────────────────────────────────────────────────────────────────────────╯
 
-# Programs init ---------------------------------------------------------------
-zoxide -V &> /dev/null && eval "$(zoxide init zsh)"
-starship -V &> /dev/null && eval "$(starship init zsh)"
 
 # Don't make my prompt look like it errored pls kthxbye :3 --------------------
 true

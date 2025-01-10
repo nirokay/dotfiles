@@ -17,6 +17,7 @@ export PAGER=less
 
 export GITMAN_REPOS_LOCATION=~/Git/
 export NIM_DOCS_DIRECTORY=~/Git/nirokay.github.io/nim-docs/
+export GOPATH=~/.go/
 
 # Stfu perl:
 export PERL_BADLANG=0

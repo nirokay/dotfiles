@@ -3,6 +3,7 @@
 PATH_DIRECTORIES=(
     ~/.nimble/bin/
     ~/Git/shell-utils/scripts
+    $GOPATH/bin
 )
 
 for NEW in "${PATH_DIRECTORIES[@]}"; do
