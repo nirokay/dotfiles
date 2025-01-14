@@ -8,6 +8,7 @@
 
 [ -f "/etc/profile" ] && test -z "$PROFILEREAD" && . /etc/profile || true
 
+[ -f ~/.local/bin/tldr ] && compctl -k "($( tldr 2>/dev/null --list))" tldr
 
 # Variables:
 export EDITOR=micro
