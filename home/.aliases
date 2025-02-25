@@ -35,10 +35,31 @@ function exists() {
 
 # Allow sudo for aliases:
 alias "sudo "="sudo"
+
 # Cat:
 exists "bat" "-V" && alias cat="bat"
 # Neofetch:
-if exists "hyfetch" "--version"; then alias neofetch="hyfetch"
+if exists "hyfetch" "--version"; then
+    FILE_DIR=~/.local/share/nirokay/ascii_distro/
+    FILE=""
+    DISTRO=$(distro)
+    NAME=$(echo "${DISTRO#'Name: '}" | cut -f1 -d$'\n')
+    case "$NAME" in
+        openSUSE|"openSUSE Tumbleweed"|"openSUSE Leap") FILE="gecko" ;;
+        *) ;;
+    esac
+
+    ARGS=""
+    if [ -n "$FILE" ]; then
+        if [ -f $FILE_DIR$FILE ]; then
+            ARGS=" --ascii-file $FILE_DIR$FILE"
+        else
+            echo -e "Neofetch ascii file '$FILE_DIR$FILE' does not exist."
+        fi
+    fi
+
+    # shellcheck disable=SC2139 # intended
+    alias neofetch="hyfetch$ARGS"
 elif exists "fastfetch"; then alias neofetch="fastfetch"
 elif exists "neowofetch" "--version"; then alias neofetch="neowofetch"
 fi

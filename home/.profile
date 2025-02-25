@@ -23,7 +23,7 @@ export GOPATH=~/.go/
 
 # Language:
 export LANG="en_GB.UTF-8"
-export LANGUAGE="en:de"
+export LANGUAGE="en" #"en:de"
 
 export LC_MEASUREMENT="en_DE.UTF-8"
 export LC_MONETARY="en_DE.UTF-8"
