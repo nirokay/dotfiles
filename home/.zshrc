@@ -84,7 +84,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
+[ -d ~/.oh-my-zsh/custom/completions ] && source ~/.oh-my-zsh/custom/completions/*
 
 # Normal ZSH config: ==========================================================
 
