@@ -8,7 +8,7 @@ Switch to Next Keyboard Layout=Meta+Alt+K,Meta+Alt+K,Switch to Next Keyboard Lay
 _k_friendly_name=Keyboard Layout Switcher
 
 [com.github.finefindus.eyedropper]
-EyedropperColorPick=Meta+Shift+P,none,Pick a New Color
+EyedropperColorPick=Meta+Shift+P,Meta+Shift+P,Pick a New Color
 _k_friendly_name=com.github.finefindus.eyedropper
 
 [kaccess]
